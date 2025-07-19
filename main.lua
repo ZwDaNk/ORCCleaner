@@ -57,3 +57,40 @@ if decalspam then
 		wait(1)
 	end
 end
+
+-- // Anti Particlespam
+while wait(1) do
+	for _, part in pairs(workspace:GetDescendants()) do
+		if part:IsA("BasePart") then
+			local emitters = {}
+			for _, child in pairs(part:GetChildren()) do
+				if child:IsA("ParticleEmitter") then
+					table.insert(emitters, child)
+				end
+			end
+			if #emitters > 5 then
+				for _, emitter in pairs(emitters) do
+					pcall(function() emitter:Destroy() end)
+				end
+			end
+		end
+	end
+end
+
+-- // Anti-JKORA
+while wait() do
+	for _, v in pairs(workspace:GetDescendants()) do
+		if v:IsA("Part") or v:IsA("SpawnLocation") or v:IsA("TrussPart") then
+			pcall(function()
+				v.Anchored = false
+				v.CanCollide = true
+				v.BrickColor = BrickColor.new("Medium stone grey")
+			end)
+		elseif v:IsA("Sound") and v.Parent == workspace then
+			pcall(function()
+				v:Stop()
+				v:Destroy()
+			end)
+		end
+	end
+end
