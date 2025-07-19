@@ -31,10 +31,12 @@ local function g()
 		pcall(function() s[k] = v end)
 	end
 end
-while wait() do
-	g()
-	wait(1)
-end
+coroutine.wrap(function()
+  while true do
+    g()
+    wait(1)
+  end
+)()
 
 -- // Anti-decalspam
 if decalspam then
