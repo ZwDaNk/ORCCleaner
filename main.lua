@@ -6,6 +6,7 @@ Description: Cleans your game and prevents skids.
 
 -- // Config
 local decalspam = false -- Configures detecting decalspam
+
 -- // Services and functions
 local l = game:GetService("Lighting")
 local run = game:GetService("RunService")
